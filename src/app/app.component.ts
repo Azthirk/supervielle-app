@@ -9,7 +9,7 @@ import pkg from '../../package.json';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'users-app'
+  title = 'supervielle-app'
   showHeader = true;
 
   constructor(private router: Router) {

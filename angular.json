@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "users-app": {
+    "supervielle-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/users-app",
+            "outputPath": "dist/supervielle-app",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "users-app:build:production"
+              "buildTarget": "supervielle-app:build:production"
             },
             "development": {
-              "buildTarget": "users-app:build:development"
+              "buildTarget": "supervielle-app:build:development"
             }
           },
           "defaultConfiguration": "development"
