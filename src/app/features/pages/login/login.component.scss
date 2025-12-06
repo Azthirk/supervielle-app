@@ -48,6 +48,7 @@ $shadow-card: 0 12px 24px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  color: var(--color-primary);
 }
 
 .btn-primary {
@@ -75,7 +76,7 @@ $shadow-card: 0 12px 24px rgba(0, 0, 0, 0.1);
 .input-focus {
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(213, 109, 132, 0.35);
+    box-shadow: 0 0 0 3px var(--color-primary-lighter)
   }
 }
 
@@ -92,4 +93,13 @@ $shadow-card: 0 12px 24px rgba(0, 0, 0, 0.1);
 
 .animate-fade {
   animation: fadeIn 0.2s ease-out;
+}
+
+.text-Color{
+  color: var(--color-primary);
+}
+
+.check-Color{
+  accent-color: var(--color-primary);
+  cursor: pointer;
 }
