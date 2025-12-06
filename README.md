@@ -56,8 +56,8 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 
 ## Environment Variables
 This project requires an environment variable to configure the API URL used for HTTP requests.
-1-Create a .env file in the root directory
 
+1-Create a .env file in the root directory
 ```bash
 In the root of the project (at the same level as package.json), create a file named: .env
 ```
