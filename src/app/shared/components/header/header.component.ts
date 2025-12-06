@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { EncryptService } from '../../../core/services/encrypt.service';
 
@@ -7,25 +7,28 @@ import { EncryptService } from '../../../core/services/encrypt.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
   email = '';
 
   constructor(
     private router: Router,
-    private encryptService: EncryptService
-  ) {}
+    private encrypt: EncryptService
+  ) {
+    this.email = this.getEmail();
+  }
 
-  ngOnInit(): void {
-    const encrypted = localStorage.getItem('user');
-    if (!encrypted) return;
-
-    const { email = '' } = this.encryptService.decrypt(encrypted) ?? {};
-    this.email = email;
+  private getEmail(): string {
+    try {
+      const encrypted = localStorage.getItem('user');
+      return encrypted ? (this.encrypt.decrypt(encrypted)?.email ?? '') : '';
+    } catch {
+      return '';
+    }
   }
 
   logout(): void {
-    ['auth'].forEach(k => localStorage.removeItem(k));
+    localStorage.removeItem('auth');
     this.router.navigate(['/login']);
   }
 }
