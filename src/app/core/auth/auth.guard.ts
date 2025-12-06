@@ -1,28 +1,29 @@
 import { inject } from '@angular/core';
-import { CanActivateFn, Router, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
 import { EncryptService } from '../services/encrypt.service';
 
 export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
   const router = inject(Router);
+  
   const encrypt = inject(EncryptService);
-  const encrypted = localStorage.getItem('auth');
-  let isLogged = false;
 
-  if (encrypted) {
+  const encrypted = localStorage.getItem('auth');
+
+  const isLogged = (() => {
+    if (!encrypted) return false;
     try {
-      const decoded = encrypt.decrypt(encrypted);
-      isLogged = decoded?.auth === true;
+      return encrypt.decrypt(encrypted)?.auth === true;
     } catch {
-      isLogged = false;
+      return false;
     }
-  }
+  })();
 
   if (isLogged && state.url === '/login') {
     return router.parseUrl('/users');
   }
 
   if (!isLogged && state.url !== '/login') {
-    return router.parseUrl('/login'); 
+    return router.parseUrl('/login');
   }
 
   return true;
