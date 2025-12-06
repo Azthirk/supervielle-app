@@ -1,17 +1,31 @@
-import { Component } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { EncryptService } from '../../../core/services/encrypt.service';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
-  constructor(private router: Router) {}
+export class HeaderComponent implements OnInit {
 
-  logout() {
-    localStorage.removeItem('auth');
+  email = '';
+
+  constructor(
+    private router: Router,
+    private encryptService: EncryptService
+  ) {}
+
+  ngOnInit(): void {
+    const encrypted = localStorage.getItem('user');
+    if (!encrypted) return;
+
+    const { email = '' } = this.encryptService.decrypt(encrypted) ?? {};
+    this.email = email;
+  }
+
+  logout(): void {
+    ['auth'].forEach(k => localStorage.removeItem(k));
     this.router.navigate(['/login']);
   }
 }

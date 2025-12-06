@@ -1,1 +1,54 @@
-<p>users-list works!</p>
+<div class="users-wrapper">
+    <h2 class="title">Users</h2>
+    <div class="filters">
+        <input
+            type="text"
+            placeholder="Search by name or email"
+            [(ngModel)]="search"
+            (ngModelChange)="setFilterNameOrEmail($event)"
+        />
+
+        <select
+            [(ngModel)]="companyFilter"
+            (ngModelChange)="setFilterCompany($event)"
+        >
+            <option value="">All companies</option>
+            @for (c of companies(); track c) {
+                <option [value]="c">{{ c }}</option>
+            }
+        </select>
+
+    </div>
+
+
+    <div class="grid">
+        @for (user of paginated(); track user.id) {
+            <div class="user-card" (click)="openSidebar(user)">
+                <h3 class="font-bold">{{ user.username }}</h3>
+                <p>{{ user.name }}</p>
+                <p>{{ user.email }}</p>
+                <span class="company">{{ user.company.name }}</span>
+            </div>
+        }
+    </div>
+
+    @if (paginated().length > 0) {
+        <div class="pagination">
+            <button (click)="prev()" [disabled]="page() === 1">Prev</button>
+            <span>Page {{ page() }}</span>
+            <button (click)="next()" [disabled]="(page() * pageSize) >= filtered().length">Next</button>
+        </div>
+    }@else{
+        <div class="flex justify-center items-center">
+            <p>No results found</p>
+        </div>
+    }
+
+
+    @if (selectedUser()) {
+        <app-user-sidebar
+        [user]="selectedUser()!"
+        (closeSidebar)="selectedUser.set(null)">
+        </app-user-sidebar>
+    }
+</div>

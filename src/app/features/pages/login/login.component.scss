@@ -1,0 +1,95 @@
+$radius-card: 1.5rem;
+$shadow-card: 0 12px 24px rgba(0, 0, 0, 0.1);
+
+.login-bg {
+  min-height: 100vh;
+  background: var(--color-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.login-card {
+  background: #fff;
+  border-radius: $radius-card;
+  box-shadow: $shadow-card;
+  overflow: hidden;
+  max-width: 70rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.login-left {
+  display: none;
+  padding: 2.5rem;
+  color: #fff;
+  background: linear-gradient(
+    to bottom right,
+    var(--color-primary-lighter, #f9d7df),
+    var(--color-primary-light),
+    var(--color-primary)
+  );
+
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.login-right {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.btn-primary {
+  background: linear-gradient(
+    to right,
+    var(--color-primary-light),
+    var(--color-primary)
+  );
+  color: #fff;
+  padding: 0.6rem;
+  border-radius: 0.6rem;
+  font-weight: 600;
+  width: 100%;
+  transition: opacity 0.2s ease-in-out;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+
+.input-focus {
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(213, 109, 132, 0.35);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade {
+  animation: fadeIn 0.2s ease-out;
+}

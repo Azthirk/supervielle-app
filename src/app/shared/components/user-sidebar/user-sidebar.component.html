@@ -1,1 +1,21 @@
-<p>user-sidebar works!</p>
+<div class="sidebar-overlay" (click)="onCloseSidebar()"></div>
+<div class="sidebar">
+    <button class="close-btn" (click)="onCloseSidebar()">✕</button>
+    <h2 class="font-bold">{{ user()?.username }}</h2>
+    <p><strong>Name:</strong> {{ user()?.name }}</p>
+    <p><strong>City:</strong> {{ user()?.address?.city }}</p>
+    <p><strong>Zip code:</strong> {{ user()?.address?.zipcode }}</p>
+    <p><strong>Phone:</strong> {{ user()?.phone }}</p>
+    <p><strong>Email:</strong> {{ user()?.email }}</p>
+    <p><strong>Company:</strong> {{ user()?.company?.name }}</p>
+    <p><strong>Website:</strong> {{ user()?.website }}</p>
+
+    <h3>Latest notes</h3>
+
+    @for (p of lastFive(); track p) {
+    <div class="post">
+        <h4>{{ p.title }}</h4>
+        <p>{{ p.body }}</p>
+    </div>
+    }
+</div>
