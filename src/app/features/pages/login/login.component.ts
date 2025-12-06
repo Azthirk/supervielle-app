@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -11,24 +11,19 @@ import { EncryptService } from '../../../core/services/encrypt.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   form!: FormGroup;
+
   loading = false;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private encrypt: EncryptService
-  ) {}
-
-  ngOnInit(): void {
+  ) {
     this.initializeForm();
-    const saved = localStorage.getItem('user');
-    if (saved) {
-      const data = this.encrypt.decrypt(saved);
-      this.form.patchValue({ ...data, remember: true });
-    }
+    this.restoreRememberedUser();
   }
 
   private initializeForm(): void {
@@ -56,19 +51,23 @@ export class LoginComponent implements OnInit {
     }, 1000);
   }
 
-  toggleRemember(remove?: boolean): void {
-    const { remember } = this.form.getRawValue();
+  toggleRemember(): void {
+    const { remember, email, password } = this.form.getRawValue();
 
-    if (remember && !remove) {
-      this.saveUser();
+    if (remember) {
+      localStorage.setItem('user', this.encrypt.encrypt({ email, password }));
     } else {
       localStorage.removeItem('user');
     }
   }
 
-  private saveUser(): void {
-    const { email, password } = this.form.getRawValue();
-    const encrypted = this.encrypt.encrypt({ email, password });
-    localStorage.setItem('user', encrypted);
+  restoreRememberedUser(): void {
+    try {
+      const saved = localStorage.getItem('user');
+      if (!saved) return;
+
+      const data = this.encrypt.decrypt(saved);
+      if (data) this.form.patchValue({ ...data, remember: true });
+    } catch {}
   }
 }
