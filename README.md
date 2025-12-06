@@ -41,7 +41,7 @@ This will compile your project and store the build artifacts in the `dist/` dire
 To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
 
 ```bash
-ng test
+ng test --code-coverage
 ```
 
 ## Running end-to-end tests
@@ -53,6 +53,20 @@ ng e2e
 ```
 
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+## Environment Variables
+This project requires an environment variable to configure the API URL used for HTTP requests.
+1-Create a .env file in the root directory
+
+```bash
+In the root of the project (at the same level as package.json), create a file named: .env
+```
+2-Add the following content inside the file:
+```bash
+API_URL=https://jsonplaceholder.typicode.com
+```
+3-Use this variable inside Angular
+The project is configured to load environment variables from this file (using the corresponding script or library included in the setup).
 
 ## Additional Resources
 
