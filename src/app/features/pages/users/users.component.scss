@@ -12,11 +12,10 @@
     display: flex;
     gap: 1rem;
     margin-bottom: 2rem;
-
+    
     input,
     select {
       padding: 0.7rem 1rem;
-      width: 260px;
       border-radius: 10px;
       border: 1px solid #ddd;
 
@@ -47,7 +46,6 @@
   }
 
   .pagination {
-    margin-top: 2rem;
     display: flex;
     gap: 1rem;
     align-items: center;

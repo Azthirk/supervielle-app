@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { HeaderComponent } from './shared/components/header/header.component';
-import { version } from '../../package.json';
+import pkg from '../../package.json';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, HeaderComponent],
@@ -18,6 +18,6 @@ export class AppComponent {
         this.showHeader = !event.urlAfterRedirects.includes('login');
       }
     });
-    console.log("Version:", version)
+    console.log("Version:", pkg?.version)
   }
 }

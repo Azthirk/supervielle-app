@@ -6,7 +6,7 @@
     "start": "node tools/generate-env.js && ng serve",
     "build": "node tools/generate-env.js && ng build",
     "watch": "node tools/generate-env.js && ng build --watch --configuration development",
-    "test": "node tools/generate-env.js && ng test"
+    "test": "ng test --code-coverage"
   },
   "private": true,
   "dependencies": {
@@ -34,8 +34,8 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "postcss": "^8.5.6",
+    "typescript": "~5.7.2",
     "tailwindcss": "^3.4.17",
-    "typescript": "~5.7.2"
+    "postcss": "^8.5.6"
   }
 }

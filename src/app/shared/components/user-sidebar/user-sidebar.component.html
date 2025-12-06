@@ -1,5 +1,5 @@
 <div class="sidebar-overlay" (click)="onCloseSidebar()"></div>
-<div class="sidebar">
+<div class="sidebar w-[380px] rounded-l-xl max-[576px]:rounded-none max-[576px]:w-full">
     <button class="close-btn" (click)="onCloseSidebar()">✕</button>
     <h2 class="font-bold">{{ user()?.username }}</h2>
     <p><strong>Name:</strong> {{ user()?.name }}</p>

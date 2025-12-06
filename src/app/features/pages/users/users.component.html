@@ -1,6 +1,7 @@
 <div class="users-wrapper">
     <h2 class="title">List</h2>
-    <div class="filters">
+    <div class="filters max-[960px]:flex-col w-full min-[960px]:w-[260px]">
+
         <input
             type="text"
             placeholder="Search by name or email"
@@ -33,7 +34,7 @@
     </div>
 
     @if (paginated().length > 0) {
-        <div class="pagination">
+        <div class="pagination items-center justify-center mt-8 min-[960px]:mt-4">
             <button (click)="prev()" [disabled]="page() === 1">Prev</button>
             <span>Page {{ page() }}</span>
             <button (click)="next()" [disabled]="(page() * pageSize) >= filtered().length">Next</button>

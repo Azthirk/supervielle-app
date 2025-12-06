@@ -1,9 +1,9 @@
 <header class="app-header">
-    <div class="left">
+    <div class="left max-[960px]:hidden">
         <h1 class="brand">Users App</h1>
     </div>
 
-    <div class="right">
+    <div class="right max-[960px]:flex max-[960px]:justify-between max-[960px]:w-[100%]">
         <span class="welcome">Welcome, <b> {{ email }} </b></span>
         <button class="logout" (click)="logout()">Logout</button>
     </div>

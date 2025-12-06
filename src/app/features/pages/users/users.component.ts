@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, computed } from '@angular/core';
+import { Component, OnInit, signal, computed, model } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../../core/services/api.service'; 
 import { UserSidebarComponent } from '../../../shared/components/user-sidebar/user-sidebar.component'; 
@@ -14,8 +14,8 @@ import { User } from '../../models/user.model';
 export class UsersComponent implements OnInit {
 
   users = signal<User[]>([]);
-  search = signal('');
-  companyFilter = signal('');
+  search = model('');
+  companyFilter = model('');
   page = signal(1);
   pageSize = 5;
 
@@ -70,12 +70,12 @@ export class UsersComponent implements OnInit {
   }
 
   setFilterCompany(event: string){
-    this.page = signal(1);
+    this.page.set(1);
     this.companyFilter.set(event);
   }
 
   setFilterNameOrEmail(event: string){
-    this.page = signal(1);
-    this.search.set(event)
+    this.page.set(1);
+    this.search.set(event);
   }
 }
