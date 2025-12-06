@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { HeaderComponent } from './shared/components/header/header.component';
-
+import { version } from '../../package.json';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, HeaderComponent],
@@ -9,7 +9,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-
+  title = 'users-app'
   showHeader = true;
 
   constructor(private router: Router) {
@@ -18,5 +18,6 @@ export class AppComponent {
         this.showHeader = !event.urlAfterRedirects.includes('login');
       }
     });
+    console.log("Version:", version)
   }
 }
