@@ -1,1 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0px;
+}
+
+:root {
+  --color-bg: #f8e9ee;
+  --color-bg-light: #f5e3e9;
+  --color-primary: #a70833;
+  --color-primary-light: #c52a54;
+  --color-primary-dark: #7a1f41;
+  --color-primary-lighter: #e7c6d1;
+  --color-text-title: #5a0f24;
+  --color-text: #3e1f2a;
+  --radius-card: 1.5rem;
+  --shadow-card: 0 4px 20px rgba(122, 31, 65, 0.18);
+}
+
+
+@layer utilities {
+  .animate-fade {
+    animation: fadeIn 0.18s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

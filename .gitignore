@@ -19,7 +19,6 @@
 *.sublime-workspace
 
 # VSCode
-.vscode/
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -43,6 +42,9 @@ coverage/
 libpeerconnection.log
 testem.log
 .history/
+
+# Ignore package-lock.json if desired
+/package-lock.json
 
 # TypeScript build info
 *.tsbuildinfo
