@@ -1,36 +1,38 @@
 <div class="users-wrapper">
-    <h2 class="title">List</h2>
-    <div class="filters max-[960px]:flex-col w-full min-[960px]:w-[260px]">
+    <div class="flex flex-col justify-start w-full min-[960px]:max-w-[1280px]">
+        <h2 class="title">List</h2>
+        <div class="filters max-[960px]:flex-col w-full min-[960px]:w-[260px]">
 
-        <input
-            type="text"
-            placeholder="Search by name or email"
-            [(ngModel)]="search"
-            (ngModelChange)="setFilterNameOrEmail($event)"
-        />
+            <input
+                type="text"
+                placeholder="Search by name or email"
+                [(ngModel)]="search"
+                (ngModelChange)="setFilterNameOrEmail($event)"
+            />
 
-        <select
-            [(ngModel)]="companyFilter"
-            (ngModelChange)="setFilterCompany($event)"
-        >
-            <option value="">All companies</option>
-            @for (c of companies(); track c) {
-                <option [value]="c">{{ c }}</option>
-            }
-        </select>
-
+            <select
+                [(ngModel)]="companyFilter"
+                (ngModelChange)="setFilterCompany($event)"
+            >
+                <option value="">All companies</option>
+                @for (c of companies(); track c) {
+                    <option [value]="c">{{ c }}</option>
+                }
+            </select>
+        </div>
     </div>
 
-
-    <div class="grid">
-        @for (user of paginated(); track user.id) {
-            <div class="user-card" (click)="openSidebar(user)">
-                <h3 class="font-bold">{{ user.username }}</h3>
-                <p>{{ user.name }}</p>
-                <p>{{ user.email }}</p>
-                <span class="company">{{ user.company.name }}</span>
-            </div>
-        }
+    <div class="flex w-full items-center justify-center">
+        <div class="grid w-full min-[960px]:max-w-[1280px]">
+            @for (user of paginated(); track user.id) {
+                <div class="user-card" (click)="openSidebar(user)">
+                    <h3 class="font-bold">{{ user.username }}</h3>
+                    <p>{{ user.name }}</p>
+                    <p>{{ user.email }}</p>
+                    <span class="company">{{ user.company.name }}</span>
+                </div>
+            }
+        </div>
     </div>
 
     @if (paginated().length > 0) {
